@@ -12,11 +12,6 @@ return {
         "saadparwaiz1/cmp_luasnip",
         "j-hui/fidget.nvim",
     },
-    opts = {
-        servers = {
-            gleam = {},
-        }
-    },
 
     config = function()
         local cmp = require('cmp')
@@ -45,11 +40,7 @@ return {
                     }
                 end,
 
-                zls = function()
-                    local lspconfig = require("lspconfig")
-
-                end,
-                ["lua_ls"] = function()
+                ["lua_ls"] = function() -- lua handler (overwrites generic)
                     local lspconfig = require("lspconfig")
                     lspconfig.lua_ls.setup {
                         capabilities = capabilities,
@@ -65,6 +56,10 @@ return {
                 end,
             }
         })
+
+        -- After setting up you may set up servers via lspconfig
+        require("lspconfig").gleam.setup({})
+
 
         local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
