@@ -9,3 +9,10 @@ vim.keymap.set("n", "<C-l>", "<C-w>l")
 
 -- Clear search highlighting
 vim.keymap.set("n", "<leader>/", ":noh")
+
+-- Split resizing
+vim.keymap.set("n", "<C-Left>", "<C-w><")
+vim.keymap.set("n", "<C-Up>", "<C-w>-")
+vim.keymap.set("n", "<C-Right>", "<C-w>>")
+vim.keymap.set("n", "<C-Down>", "<C-w>+")
+
