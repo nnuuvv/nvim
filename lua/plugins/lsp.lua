@@ -31,7 +31,7 @@ return {
                 "bashls",
                 "hls",
                 "jsonls",
-                "csharp_ls",
+                "omnisharp",
             },
             handlers = {
                 function(server_name) -- default handler (optional)
