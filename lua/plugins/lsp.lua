@@ -54,6 +54,27 @@ return {
                         }
                     }
                 end,
+                ["omnisharp"] = function ()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.omnisharp.setup {
+                        settings = {
+                            FormattingOptions = {
+                                EnableEditorConfigSupport = true,
+                                OrganizeImports = true,
+                            },
+                            MsBuild = {
+                                LoadProjectsOnDemand = nil,
+                            },
+                            RoslynExtensionsOptions = {
+                                EnableImportCompletion = true,
+                                AnalyzeOpenDocumentsOnly = nil,
+                            },
+                            Sdk = {
+                                IncludePrereleases = true,
+                            },
+                        },
+                    }
+                end,
             }
         })
 
