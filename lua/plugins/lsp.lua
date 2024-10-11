@@ -58,7 +58,14 @@ return {
         })
 
         -- After setting up you may set up servers via lspconfig
-        require("lspconfig").gleam.setup({})
+        local lspconfig = require("lspconfig")
+
+        lspconfig.gleam.setup({
+            cmd = { "gleam", "lsp" },
+            filetypes = { "gleam" },
+            root_dir = lspconfig.util.root_pattern("gleam.toml", ".git"),
+            capabilities = capabilities,
+        })
 
 
         local cmp_select = { behavior = cmp.SelectBehavior.Select }
@@ -73,7 +80,6 @@ return {
                 ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
                 ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
                 ['<C-Space>'] = cmp.mapping.confirm({ select = true }),
-                --["<C-Space>"] = cmp.mapping.complete(),
             }),
             sources = cmp.config.sources({
                 { name = 'nvim_lsp' },
