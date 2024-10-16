@@ -19,3 +19,6 @@ vim.keymap.set("n", "<C-Down>", "<C-w>+")
 vim.keymap.set("n", "<leader>ff", vim.lsp.buf.format, { desc = "Format File" })
 
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show detailed errors" })
+
+vim.keymap.set("n", "<leader>tt", ":TodoTelescope<CR>", { desc = "TodoTelescope"})
+vim.keymap.set("n", "<leader>tl", ":TodoLocList<CR>", { desc = "TodoLocList"})
