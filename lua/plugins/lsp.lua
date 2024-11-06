@@ -54,7 +54,7 @@ return {
                         }
                     }
                 end,
-                ["omnisharp"] = function ()
+                ["omnisharp"] = function()
                     local lspconfig = require("lspconfig")
                     lspconfig.omnisharp.setup {
                         settings = {
@@ -90,6 +90,12 @@ return {
 
 
         local cmp_select = { behavior = cmp.SelectBehavior.Select }
+        local snipSources = cmp.config.sources({
+            { name = 'nvim_lsp' },
+            { name = 'luasnip' },
+        }, {
+            { name = 'buffer' },
+        })
 
         cmp.setup({
             snippet = {
@@ -100,14 +106,9 @@ return {
             mapping = cmp.mapping.preset.insert({
                 ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
                 ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-                ['<C-a>'] = cmp.mapping.confirm({ select = true }),
+                ['<TAB>'] = cmp.mapping.confirm({ select = true }),
             }),
-            sources = cmp.config.sources({
-                { name = 'nvim_lsp' },
-                { name = 'luasnip' }, -- For luasnip users.
-            }, {
-                { name = 'buffer' },
-            })
+            sources = snipSources
         })
 
         vim.diagnostic.config({
