@@ -22,44 +22,6 @@ return {
 
                 map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
 
-<<<<<<< HEAD
-                ["lua_ls"] = function() -- lua handler (overwrites generic)
-                    local lspconfig = require("lspconfig")
-                    lspconfig.lua_ls.setup {
-                        capabilities = capabilities,
-                        settings = {
-                            Lua = {
-                                runtime = { version = "Lua 5.1" },
-                                diagnostics = {
-                                    globals = { "bit", "vim", "it", "describe", "before_each", "after_each" },
-                                }
-                            }
-                        }
-                    }
-                end,
-                ["omnisharp"] = function()
-                    local lspconfig = require("lspconfig")
-                    lspconfig.omnisharp.setup {
-                        settings = {
-                            FormattingOptions = {
-                                EnableEditorConfigSupport = true,
-                                OrganizeImports = true,
-                            },
-                            MsBuild = {
-                                LoadProjectsOnDemand = nil,
-                            },
-                            RoslynExtensionsOptions = {
-                                EnableImportCompletion = true,
-                                AnalyzeOpenDocumentsOnly = nil,
-                            },
-                            Sdk = {
-                                IncludePrereleases = true,
-                            },
-                        },
-                    }
-                end,
-            }
-=======
                 map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
 
                 map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
@@ -112,7 +74,6 @@ return {
                     end, '[T]oggle Inlay [H]ints')
                 end
             end,
->>>>>>> 589f37d (redo lsp config and cmp.)
         })
 
         local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -171,18 +132,7 @@ return {
             capabilities = capabilities,
         })
 
-
-<<<<<<< HEAD
-        local cmp_select = { behavior = cmp.SelectBehavior.Select }
-        local snipSources = cmp.config.sources({
-            { name = 'nvim_lsp' },
-            { name = 'luasnip' },
-        }, {
-            { name = 'buffer' },
-        })
-=======
         require('mason').setup()
->>>>>>> 589f37d (redo lsp config and cmp.)
 
         local ensure_installed = vim.tbl_keys(servers or {})
         vim.list_extend(ensure_installed, {
@@ -199,29 +149,6 @@ return {
                     require('lspconfig')[server_name].setup(server)
                 end,
             },
-<<<<<<< HEAD
-            mapping = cmp.mapping.preset.insert({
-                ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-                ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-                ['<TAB>'] = cmp.mapping.confirm({ select = true }),
-            }),
-            sources = snipSources
-        })
-
-        vim.diagnostic.config({
-            -- update_in_insert = true,
-            float = {
-                focusable = false,
-                style = "minimal",
-                border = "rounded",
-                source = "always",
-                header = "",
-                prefix = "",
-            },
-        })
-    end
-=======
         }
     end,
->>>>>>> 589f37d (redo lsp config and cmp.)
 }
