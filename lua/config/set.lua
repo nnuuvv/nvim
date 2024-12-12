@@ -20,4 +20,11 @@ vim.opt.termguicolors = true
 
 vim.opt.scrolloff = 8
 
+-- bind system clipboard to nvim
+vim.schedule(function()
+  vim.opt.clipboard = 'unnamedplus'
+end)
 
+vim.opt.undofile = true
+
+vim.opt.inccommand = 'split'
