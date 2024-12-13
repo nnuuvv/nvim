@@ -5,7 +5,21 @@ return {
     dependencies = { 'nvim-lua/plenary.nvim' },
 
     config = function()
-        require('telescope').setup({})
+        local actions = require("telescope.actions")
+        require('telescope').setup({
+            defaults = {
+                mappings = {
+                    i = {
+                        ["<C-k>"] = actions.move_selection_previous,
+                        ["<C-j>"] = actions.move_selection_next,
+                    },
+                    n = {
+                        ["<C-k>"] = actions.preview_scrolling_up,
+                        ["<C-j>"] = actions.preview_scrolling_down,
+                    },
+                },
+            },
+        })
         local builtin = require('telescope.builtin')
         vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
         vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
