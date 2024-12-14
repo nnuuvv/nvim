@@ -123,16 +123,7 @@ return {
             },
         }
 
-        -- setup servers not available through mason
-        local lspconfig = require('lspconfig')
-        lspconfig.gleam.setup({
-            cmd = { "gleam", "lsp" },
-            filetypes = { "gleam" },
-            root_dir = lspconfig.util.root_pattern("gleam.toml", ".git"),
-            capabilities = capabilities,
-        })
-
-        require('mason').setup()
+                require('mason').setup()
 
         local ensure_installed = vim.tbl_keys(servers or {})
         vim.list_extend(ensure_installed, {
@@ -150,5 +141,16 @@ return {
                 end,
             },
         }
+
+        -- setup servers not available through mason
+        local lspconfig = require('lspconfig')
+        lspconfig.gleam.setup({
+            cmd = { "gleam", "lsp" },
+            filetypes = { "gleam" },
+            root_dir = lspconfig.util.root_pattern("gleam.toml", ".git"),
+            capabilities = capabilities,
+        })
+
+
     end,
 }
