@@ -103,27 +103,9 @@ return {
                     },
                 },
             },
-            omnisharp = {
-                settings = {
-                    FormattingOptions = {
-                        EnableEditorConfigSupport = true,
-                        OrganizeImports = true,
-                    },
-                    MsBuild = {
-                        LoadProjectsOnDemand = nil,
-                    },
-                    RoslynExtensionsOptions = {
-                        EnableImportCompletion = true,
-                        AnalyzeOpenDocumentsOnly = nil,
-                    },
-                    Sdk = {
-                        IncludePrereleases = true,
-                    },
-                },
-            },
         }
 
-                require('mason').setup()
+        require('mason').setup()
 
         local ensure_installed = vim.tbl_keys(servers or {})
         vim.list_extend(ensure_installed, {
@@ -144,6 +126,7 @@ return {
 
         -- setup servers not available through mason
         local lspconfig = require('lspconfig')
+
         lspconfig.gleam.setup({
             cmd = { "gleam", "lsp" },
             filetypes = { "gleam" },
@@ -151,6 +134,37 @@ return {
             capabilities = capabilities,
         })
 
+        local is_windows = vim.fn.has("win64") == 1 or vim.fn.has("win32") == 1 or vim.fn.has("win16") == 1
 
+        local omnisharp_path = ""
+        if is_windows then
+            omnisharp_path = vim.fs.normalize("~/omnisharp/OmniSharp.exe")
+        else
+            omnisharp_path = vim.fs.normalize("~/omnisharp/OmniSharp")
+        end
+
+
+        lspconfig.omnisharp.setup({
+            cmd = { omnisharp_path, '--languageserver' },
+            filetypes = { 'cs', 'razor' },
+            root_dir = lspconfig.util.root_pattern('*.sln', 'Directory.Build.props', '.git'),
+            capabilities = capabilities,
+            settings = {
+                FormattingOptions = {
+                    EnableEditorConfigSupport = true,
+                    OrganizeImports = true,
+                },
+                MsBuild = {
+                    LoadProjectsOnDemand = nil,
+                },
+                RoslynExtensionsOptions = {
+                    EnableImportCompletion = true,
+                    AnalyzeOpenDocumentsOnly = nil,
+                },
+                Sdk = {
+                    IncludePrereleases = true,
+                },
+            },
+        })
     end,
 }
