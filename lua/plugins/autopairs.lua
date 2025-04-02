@@ -1,16 +1,27 @@
--- autopairs
--- https://github.com/windwp/nvim-autopairs
-
 return {
-  'windwp/nvim-autopairs',
-  event = 'InsertEnter',
-  -- Optional dependency
-  dependencies = { 'hrsh7th/nvim-cmp' },
-  config = function()
-    require('nvim-autopairs').setup {}
-    -- If you want to automatically add `(` after selecting a function or method
-    local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
-    local cmp = require 'cmp'
-    cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
-  end,
+    'saghen/blink.pairs',
+    version = '*', -- (recommended) only required with prebuilt binaries
+
+    -- download prebuilt binaries from github releases
+    dependencies = 'saghen/blink.download',
+    -- OR build from source
+    build = 'cargo build --release',
+
+    --- @module 'blink.pairs'
+    opts = {
+        mappings = {
+            enabled = true,
+            -- see the defaults: https://github.com/Saghen/blink.pairs/blob/main/lua/blink/pairs/config/mappings.lua#L10
+            pairs = {},
+        },
+        highlights = {
+            enabled = true,
+            groups = {
+                'BlinkPairsOrange',
+                'BlinkPairsPurple',
+                'BlinkPairsBlue',
+            },
+        },
+        debug = false,
+    }
 }

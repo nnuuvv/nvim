@@ -28,3 +28,5 @@ end)
 vim.opt.undofile = true
 
 vim.opt.inccommand = 'split'
+
+vim.o.winborder = "rounded"

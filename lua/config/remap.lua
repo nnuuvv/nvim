@@ -16,13 +16,14 @@ vim.keymap.set("n", "<C-Up>", "<C-w>-")
 vim.keymap.set("n", "<C-Right>", "<C-w>>")
 vim.keymap.set("n", "<C-Down>", "<C-w>+")
 
-vim.keymap.set("n", "<leader>ff", vim.lsp.buf.format, { desc = "Format File" })
 
 -- diagnostic keybinds
-vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show detailed errors" })
+vim.diagnostic.config({ virtual_lines = true })
+vim.keymap.set("n", "<leader>e", function()
+    vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+end, { desc = "Show detailed errors" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
 
-vim.keymap.set("n", "<leader>tt", ":TodoTelescope<CR>", { desc = "TodoTelescope"})
-vim.keymap.set("n", "<leader>tl", ":TodoLocList<CR>", { desc = "TodoLocList"})
-
+vim.keymap.set("n", "<leader>tt", ":TodoTelescope<CR>", { desc = "TodoTelescope" })
+vim.keymap.set("n", "<leader>tl", ":TodoLocList<CR>", { desc = "TodoLocList" })
