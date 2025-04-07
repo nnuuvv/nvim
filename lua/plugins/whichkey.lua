@@ -11,6 +11,7 @@ return {
             { '<leader>w', group = '[W]orkspace' },
             { '<leader>t', group = '[T]oggle' },
             { '<leader>f', group = '[F]ile' },
+            { '<leader>e', group = '[E]rror' },
         },
     },
     keys = {

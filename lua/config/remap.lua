@@ -17,11 +17,22 @@ vim.keymap.set("n", "<C-Right>", "<C-w>>")
 vim.keymap.set("n", "<C-Down>", "<C-w>+")
 
 
+-- always show virtual_text, but only brief info
+-- show virtual line for current_line
+vim.diagnostic.config({
+    virtual_text = {
+        format = function(diagnostic)
+            return string.match(diagnostic.message, "(.-)\n")
+        end,
+    },
+    virtual_lines = {
+        current_line = true
+    }
+})
+
 -- diagnostic keybinds
-vim.diagnostic.config({ virtual_lines = true })
-vim.keymap.set("n", "<leader>e", function()
-    vim.diagnostic.enable(not vim.diagnostic.is_enabled())
-end, { desc = "Show detailed errors" })
+vim.keymap.set("n", "<leader>ew", vim.diagnostic.open_float, { desc = "Open [E]rror [W]indow" })
+
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
 
