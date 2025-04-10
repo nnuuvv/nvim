@@ -25,32 +25,18 @@ vim.api.nvim_create_user_command(
             vim.notify("Done.")
         end
 
+        local command =
+            table.concat({ "git", "submodule", "add", full_url, plugin_dir:format(repo[2]) }, " ")
+            .. ";" .. table.concat({ "git", "submodule", "init", plugin_dir:format(repo[2]) }, " ")
+            .. ";" .. table.concat({ "git", "submodule", "update", plugin_dir:format(repo[2]) }, " ")
+            .. ";" .. table.concat({ "git", "add", plugin_dir:format(repo[2]) }, " ")
+            .. ";" .. table.concat({ "git", "add", ".gitmodules" }, " ")
+
         vim.notify("Adding submodule...")
-        vim.fn.jobstart({ "git", "submodule", "add", full_url, plugin_dir:format(repo[2]) }, {
-            on_exit = on_done,
-            cwd = vim.fn.stdpath("config")
-        })
-
         vim.notify("Initializing submodule...")
-        vim.fn.jobstart({ "git", "submodule", "init", plugin_dir:format(repo[2]) }, {
-            on_exit = on_done,
-            cwd = vim.fn.stdpath("config")
-        })
-
         vim.notify("Updating submodule...")
-        vim.fn.jobstart({ "git", "submodule", "update", plugin_dir:format(repo[2]) }, {
-            on_exit = on_done,
-            cwd = vim.fn.stdpath("config")
-        })
-
         vim.notify("Adding to git...")
-        -- add newly added submodule to git
-        vim.fn.jobstart({ "git", "add", plugin_dir:format(repo[2]) }, {
-            on_exit = on_done,
-            cwd = vim.fn.stdpath("config")
-        })
-        -- add changed .gitmodules to git
-        vim.fn.jobstart({ "git", "add", ".gitmodules" }, {
+        vim.fn.jobstart(command, {
             on_exit = on_done,
             cwd = vim.fn.stdpath("config")
         })
@@ -105,7 +91,9 @@ vim.api.nvim_create_user_command(
 vim.api.nvim_create_user_command(
     'UpdatePlugins',
     function()
-        local command = { "git", "submodule", "update" }
+        local command = 
+        table.concat({ "git", "submodule", "update" }, " ")
+        .. ";" .. table.concat({ "git", "add", "./.gitmodules" }, " ")
 
         local on_done = function()
             vim.cmd('packloadall! | helptags ALL')
@@ -113,13 +101,8 @@ vim.api.nvim_create_user_command(
         end
 
         vim.notify("Updating all submodules...")
-        vim.fn.jobstart(command, {
-            on_exit = on_done,
-            cwd = vim.fn.stdpath("config")
-        })
-
         vim.notify("Updating git")
-        vim.fn.jobstart({ "git", "add", "./.gitmodules" }, {
+        vim.fn.jobstart(command, {
             on_exit = on_done,
             cwd = vim.fn.stdpath("config")
         })
