@@ -1,4 +1,5 @@
 {
+  "auto-save.nvim": { "branch": "main", "commit": "24af023800c48645e6472cb6f30cebe782288446" },
   "blink.cmp": { "branch": "main", "commit": "bae4bae0eedd1fa55f34b685862e94a222d5c6f8" },
   "catppuccin": { "branch": "main", "commit": "76a8d0515024cc55d8bd26fc13f1af88faef3ebf" },
   "code-stats-vim": { "branch": "master", "commit": "621b52e271639b436e40ab5f5fd7ee70bbfe50c8" },
