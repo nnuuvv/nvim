@@ -66,9 +66,6 @@ return {
 
         lspconfig.gleam.setup({
             capabilities = capabilities,
-            on_attach = function()
-                vim.opt.tabstop = 2
-            end
         })
 
         local is_windows = vim.fn.has("win64") == 1 or vim.fn.has("win32") == 1 or vim.fn.has("win16") == 1
