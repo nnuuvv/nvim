@@ -4,3 +4,6 @@ vim.pack.add({
 })
 
 require("todo-comments").setup({})
+
+vim.keymap.set("n", "<leader>tt", ":TodoTelescope<CR>", { desc = "TodoTelescope" })
+vim.keymap.set("n", "<leader>tl", ":TodoLocList<CR>", { desc = "TodoLocList" })

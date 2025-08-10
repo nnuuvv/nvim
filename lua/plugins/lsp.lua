@@ -7,8 +7,11 @@ vim.pack.add({
 
 -- lazydev -----------------------------------------
 require("lazydev").setup({
+    ft = "lua",
     library = {
-        { path = "luvit-meta/library", lazy = true },
+        -- See the configuration section for more details
+        -- Load luvit types when the `vim.uv` word is found
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
     },
 })
 
@@ -19,6 +22,15 @@ vim.lsp.enable({ "gleam", "lua_ls" })
 vim.keymap.set("n", "<leader>ff", vim.lsp.buf.format, { desc = "Format File" })
 
 vim.lsp.inlay_hint.enable(true)
+
+-- format on write
+vim.api.nvim_create_autocmd("BufWritePre", {
+    callback = function(event)
+        print(event.buf)
+        vim.lsp.buf.format({ bufnr = event.buf })
+    end,
+})
+
 
 vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
