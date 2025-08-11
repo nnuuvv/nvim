@@ -7,6 +7,9 @@ require("no-neck-pain").setup({
             -- disable right buffer
             enabled = false,
         },
+        colors = {
+            background = "catppuccin-frappe-dark",
+        },
         -- make left scratch pad
         scratchPad = {
             enabled = true,
