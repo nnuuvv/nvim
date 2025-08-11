@@ -26,7 +26,6 @@ vim.lsp.inlay_hint.enable(true)
 -- format on write
 vim.api.nvim_create_autocmd("BufWritePre", {
     callback = function(event)
-        print(event.buf)
         vim.lsp.buf.format({ bufnr = event.buf })
     end,
 })
@@ -41,6 +40,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         end
 
         map('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+        map('gb', "''", '[G]o [B]ack')
         map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
         map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
         map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
