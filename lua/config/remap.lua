@@ -38,16 +38,19 @@ vim.keymap.set("n", "<c-u>", "<c-u>zz")
 
 vim.keymap.set("n", "<leader>pu", vim.pack.update, { desc = "[P]ack [U]pdate" })
 
+-- remove leading and trailing whitespace
 local function trim(s)
     return s:match("^%s*(.*)"):match("(.-)%s*$")
 end
 
 vim.keymap.set("n", "<leader>ms", function()
-    -- get current line : remove whitespace
+    -- get current line(string) and row(int) in the buffer
     local line = trim(vim.api.nvim_get_current_line())
-
-    local seperator = string.rep("-", 80 - string.len(line))
     local row, _ = unpack(vim.api.nvim_win_get_cursor(0))
 
+    -- make "-----------" seperator line at consitent length
+    local seperator = string.rep("-", 80 - string.len(line))
+
+    -- write line with seperator to current buffer at current cursor position
     vim.api.nvim_buf_set_lines(0, row - 1, row, true, { line .. " " .. seperator })
 end, { desc = "[M]ake [S]eperator" })

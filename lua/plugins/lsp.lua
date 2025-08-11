@@ -31,7 +31,6 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     end,
 })
 
-
 vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
     callback = function(event)
@@ -57,6 +56,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
             local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = true })
 
             -- Highlight references of the word under cursor when cursor rests for a little while
+            ---@diagnostic disable-next-line: param-type-mismatch
             vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
                 buffer = event.buf,
                 group = highlight_augroup,
@@ -64,6 +64,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
             })
 
             -- Clear highlights when cursor moves again
+            ---@diagnostic disable-next-line: param-type-mismatch
             vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
                 buffer = event.buf,
                 group = highlight_augroup,
@@ -71,6 +72,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
             })
 
             -- handle LspDetach
+            ---@diagnostic disable-next-line: param-type-mismatch
             vim.api.nvim_create_autocmd({ 'LspDetach' }, {
                 group = vim.api.nvim_create_augroup('kickstart-lsp-detach', { clear = true }),
                 callback = function(event2)

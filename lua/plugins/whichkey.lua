@@ -9,5 +9,6 @@ require("which-key").setup({
         { '<leader>t', group = '[T]oggle' },
         { '<leader>f', group = '[F]ile' },
         { '<leader>e', group = '[E]rror' },
+        { '<leader>p', group = '[P]ack' },
     },
 })
