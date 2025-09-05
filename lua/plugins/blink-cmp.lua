@@ -4,11 +4,6 @@ vim.pack.add({
 })
 
 require("blink.cmp").setup({
-    -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
-    -- 'super-tab' for mappings similar to vscode (tab to accept)
-    -- 'enter' for enter to accept
-    -- 'none' for no mappings
-    --
     -- See :h blink-cmp-config-keymap for defining your own keymap
     keymap = {
         preset = "none",
@@ -29,15 +24,14 @@ require("blink.cmp").setup({
         nerd_font_variant = 'mono'
     },
 
-    -- (Default) Only show the documentation popup when manually triggered
     completion = {
-        documentation = { auto_show = true },
+        documentation = { auto_show = true, },
         menu = {
             draw = {
                 treesitter = {
-                    "lsp"
-                }
-            }
+                    'lsp'
+                },
+            },
         },
         accept = { auto_brackets = { enabled = true }, },
     },
