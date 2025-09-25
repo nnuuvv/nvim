@@ -1,6 +1,7 @@
 vim.keymap.set("n", "<leader>fw", vim.cmd.Ex, { desc = "File View" })
 
--- CTRL+W + split movement -> CTRL + split movement
+
+-- Split movement
 vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Swap to split left" })
 vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Swap to split down" })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Swap to split up" })
@@ -10,10 +11,10 @@ vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Swap to split right" })
 vim.keymap.set("n", "<Esc>", ":noh<CR>")
 
 -- Split resizing
-vim.keymap.set("n", "<C-Left>", "<C-w><", { desc = "Resize split left" })
-vim.keymap.set("n", "<C-Up>", "<C-w>-", { desc = "Resize split up" })
-vim.keymap.set("n", "<C-Right>", "<C-w>>", { desc = "Resize split right" })
-vim.keymap.set("n", "<C-Down>", "<C-w>+", { desc = "Resize split down" })
+vim.keymap.set("n", "<A-h>", "<C-w><", { desc = "Resize split left" })
+vim.keymap.set("n", "<A-j>", "<C-w>+", { desc = "Resize split down" })
+vim.keymap.set("n", "<A-k>", "<C-w>-", { desc = "Resize split up" })
+vim.keymap.set("n", "<A-l>", "<C-w>>", { desc = "Resize split right" })
 
 -- always show virtual_text, but only brief info
 -- show virtual line for current_line
@@ -36,7 +37,6 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagn
 vim.keymap.set("n", "<c-d>", "<c-d>zz")
 vim.keymap.set("n", "<c-u>", "<c-u>zz")
 
-vim.keymap.set("n", "<leader>q", ":q<CR>")
 vim.keymap.set("n", "<leader>w", ":w<CR>")
 
 -- pack keybinds
