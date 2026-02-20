@@ -12,7 +12,7 @@ vim.opt.signcolumn = "yes"
 
 vim.opt.smartindent = true
 
-vim.opt.wrap = false
+vim.opt.wrap = true
 
 vim.opt.swapfile = false
 
