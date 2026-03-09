@@ -32,6 +32,35 @@ vim.diagnostic.config({
 -- diagnostic keybinds
 vim.keymap.set("n", "<leader>ew", vim.diagnostic.open_float, { desc = "Open [E]rror [W]indow" })
 
+local show_errors = false
+-- toggle showing virtual_lines
+vim.keymap.set("n", "<leader>te", function()
+    if show_errors then
+        vim.diagnostic.config({
+            virtual_text = {
+                format = function(diagnostic)
+                    return string.match(diagnostic.message, "(.-)\n")
+                end,
+            },
+            virtual_lines = {
+                current_line = true
+            }
+        })
+        show_errors = false
+    else
+        vim.diagnostic.config({
+            virtual_text = {
+                format = function(diagnostic)
+                    return string.match(diagnostic.message, "(.-)\n")
+                end,
+            },
+            virtual_lines = false
+        })
+        show_errors = true
+    end
+end, { desc = "[T]oggle [E]rrors" })
+
+
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
 vim.keymap.set("n", "<c-d>", "<c-d>zz")
