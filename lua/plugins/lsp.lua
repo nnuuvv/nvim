@@ -18,7 +18,35 @@ require("lazydev").setup({
 require("mason").setup({})
 
 -- lsp setup ---------------------------------------
-vim.lsp.enable({ "gleam", "lua_ls", "ruff", "ty", "nil_ls" })
+vim.lsp.enable({
+    "gleam",
+    "lua_ls",
+
+    -- python
+    "ruff",
+    "ty",
+
+    -- nix
+    "nil_ls",
+
+    -- inclusivity
+    "woke",
+
+    -- web
+    "prettier",
+    "biome",
+    "cssls",
+    "tailwindcss",
+
+    -- rust
+    "rust_analyzer",
+
+    -- markdown
+    "markdown_oxide",
+
+    -- toml
+    "taplo",
+})
 
 -- keybinds / settings
 vim.keymap.set("n", "<leader>ff", vim.lsp.buf.format, { desc = "Format File" })
