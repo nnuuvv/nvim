@@ -1,4 +1,4 @@
-require("plugins.catppuccin")
+require("plugins.theme")
 
 -- order relevant start
 require("plugins.telescope")

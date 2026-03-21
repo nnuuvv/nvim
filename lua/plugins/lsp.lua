@@ -18,7 +18,7 @@ require("lazydev").setup({
 require("mason").setup({})
 
 -- lsp setup ---------------------------------------
-vim.lsp.enable({ "gleam", "lua_ls", "ruff", "ty" })
+vim.lsp.enable({ "gleam", "lua_ls", "ruff", "ty", "nil_ls" })
 
 -- keybinds / settings
 vim.keymap.set("n", "<leader>ff", vim.lsp.buf.format, { desc = "Format File" })
