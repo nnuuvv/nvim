@@ -78,6 +78,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
         map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
         map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+        map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', "v")
         map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclartion')
 
 
