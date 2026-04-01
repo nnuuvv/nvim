@@ -5,15 +5,9 @@ vim.pack.add({
 
 local get_time_of_day = function()
     local hour = tonumber(os.date("%H"))
-    if hour >= 6 and hour < 12 then
-        -- morning
+    if hour < 19 then
+        -- day
         return "dayfox"
-    elseif hour >= 12 and hour < 18 then
-        -- afternoon
-        return "dayfox"
-    elseif hour >= 18 and hour < 24 then
-        -- evening
-        return "catppuccin-mocha"
     else
         -- night
         return "catppuccin-mocha"
