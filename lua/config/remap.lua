@@ -73,7 +73,7 @@ vim.keymap.set("n", "<leader>pu", vim.pack.update, { desc = "[P]ack [U]pdate" })
 
 -- remove leading and trailing whitespace
 local function trim(s)
-    return s:match("^%s*(.*)"):match("(.-)%s*$")
+    return s:match("(.-)%s*%-*$")
 end
 
 vim.keymap.set("n", "<leader>ms", function()
